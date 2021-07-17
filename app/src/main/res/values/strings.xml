@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RickAndMortyWithGraphQL</string>
+    <string name="character_image">Character image</string>
 </resources>
