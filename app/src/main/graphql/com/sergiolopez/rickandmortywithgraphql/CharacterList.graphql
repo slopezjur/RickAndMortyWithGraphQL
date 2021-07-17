@@ -1,0 +1,12 @@
+query CharacterList {
+  characters {
+    info {
+      count
+    }
+    results {
+      image
+      name
+      species
+    }
+  }
+}
