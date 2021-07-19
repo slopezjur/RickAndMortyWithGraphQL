@@ -24,6 +24,45 @@ allprojects {
         google()
         mavenCentral()
     }
+
+    ext {
+        androidLibs = [
+                appcompat         : 'androidx.appcompat:appcompat:1.3.0',
+                material          : 'com.google.android.material:material:1.4.0',
+                constraintlayout  : 'androidx.constraintlayout:constraintlayout:2.0.4',
+                androidxCore      : 'androidx.core:core-ktx:1.6.0',
+                lifecycleRuntime  : 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1',
+                navigationFragment: 'androidx.navigation:navigation-fragment-ktx:2.3.5',
+                navigationUi      : 'androidx.navigation:navigation-ui-ktx:2.3.5',
+                activityKtx       : 'androidx.activity:activity-ktx:1.2.3'
+        ]
+
+        androidKaptLibs = [
+                hiltCompiler: "com.google.dagger:hilt-compiler:$hilt_version"
+        ]
+
+        kotlinLibs = [
+                coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0',
+                stdlib    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+        ]
+
+        libs = [
+                hilt           : "com.google.dagger:hilt-android:$hilt_version",
+                apollOruntime  : "com.apollographql.apollo:apollo-runtime:$apollo_version",
+                apolloCoroutine: "com.apollographql.apollo:apollo-coroutines-support:$apollo_version",
+                coil           : 'io.coil-kt:coil:1.3.0'
+        ]
+
+        testLibs = [
+                junit      : 'junit:junit:4.13.2',
+                mockitoCore: 'org.mockito:mockito-core:3.6.0'
+        ]
+
+        androidTestLibs = [
+                extJunit    : 'androidx.test.ext:junit-ktx:1.1.3',
+                espressoCore: 'androidx.test.espresso:espresso-core:3.4.0'
+        ]
+    }
 }
 
 task clean(type: Delete) {
