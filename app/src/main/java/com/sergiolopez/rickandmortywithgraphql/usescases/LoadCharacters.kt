@@ -1,18 +1,16 @@
 package com.sergiolopez.rickandmortywithgraphql.usescases
 
 import android.util.Log
-import com.apollographql.apollo.coroutines.await
-import com.sergiolopez.rickandmortywithgraphql.data.apolloClient
-import com.sergiolopez.rickandmortywithgraphql.CharacterListQuery
+import com.sergiolopez.rickandmortywithgraphql.data.repositories.CharacterRepository
 import com.sergiolopez.rickandmortywithgraphql.domain.Character
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class LoadCharacters {
+class LoadCharacters(private val characterRepository: CharacterRepository) {
 
     suspend fun load(): List<Character> = withContext(Dispatchers.IO) {
         val response = try {
-            apolloClient.query(CharacterListQuery()).await()
+            characterRepository.getCharacters()
         } catch (ex: Exception) {
             Log.d("CharacterList", "Failure", ex)
             null
