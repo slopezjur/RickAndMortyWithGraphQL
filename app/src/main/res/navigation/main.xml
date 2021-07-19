@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/characterListFragment"
-        android:name="com.sergiolopez.rickandmortywithgraphql.framework.ui.CharacterListFragment"
+        android:name="com.sergiolopez.rickandmortywithgraphql.framework.ui.main.CharacterListFragment"
         android:label="CharacterListFragment" />
 </navigation>

@@ -5,8 +5,9 @@ import com.sergiolopez.rickandmortywithgraphql.data.repositories.CharacterReposi
 import com.sergiolopez.rickandmortywithgraphql.domain.Character
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class LoadCharacters(private val characterRepository: CharacterRepository) {
+class LoadCharacters @Inject constructor (private val characterRepository: CharacterRepository) {
 
     suspend fun load(): List<Character> = withContext(Dispatchers.IO) {
         val response = try {
