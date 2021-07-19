@@ -1,4 +1,4 @@
-package com.sergiolopez.rickandmortywithgraphql.framework.ui
+package com.sergiolopez.rickandmortywithgraphql.framework.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergiolopez.rickandmortywithgraphql.databinding.CharacterListFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CharacterListFragment : Fragment() {
 
     private val viewModel by viewModels<MainViewModel>()
