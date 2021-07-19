@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RickAndMortyWithGraphQL">
-        <activity android:name="com.sergiolopez.rickandmortywithgraphql.ui.main.MainActivity">
+        <activity android:name="com.sergiolopez.rickandmortywithgraphql.framework.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
