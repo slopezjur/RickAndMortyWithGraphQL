@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.sergiolopez.rickandmortywithgraphql.databinding.CharacterItemBinding
+import com.sergiolopez.rickandmortywithgraphql.domain.Character
 
 class CharacterListAdapter(
-    val characters: List<CharacterListQuery.Result>
+    private val characters: List<Character>
 ) : RecyclerView.Adapter<CharacterListAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: CharacterItemBinding) : RecyclerView.ViewHolder(binding.root)
