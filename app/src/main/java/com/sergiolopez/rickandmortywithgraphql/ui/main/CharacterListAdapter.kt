@@ -1,4 +1,4 @@
-package com.sergiolopez.rickandmortywithgraphql
+package com.sergiolopez.rickandmortywithgraphql.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

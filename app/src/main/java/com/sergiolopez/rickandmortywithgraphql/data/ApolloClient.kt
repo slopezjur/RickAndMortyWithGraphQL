@@ -1,4 +1,4 @@
-package com.sergiolopez.rickandmortywithgraphql
+package com.sergiolopez.rickandmortywithgraphql.data
 
 import com.apollographql.apollo.ApolloClient
 
