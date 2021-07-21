@@ -4,6 +4,7 @@ buildscript {
     ext.kotlin_version = "1.5.21"
     ext.hilt_version = "2.37"
     ext.apollo_version = "2.5.9"
+    ext.kotlinx_coroutine = "1.5.1"
 
     repositories {
         google()
@@ -43,7 +44,7 @@ allprojects {
         ]
 
         kotlinLibs = [
-                coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0',
+                coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutine",
                 stdlib    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
         ]
 
@@ -55,13 +56,16 @@ allprojects {
         ]
 
         testLibs = [
-                junit      : 'junit:junit:4.13.2',
-                mockitoCore: 'org.mockito:mockito-core:3.6.0'
+                junit            : 'junit:junit:4.13.2',
+                mockitoCore      : 'org.mockito:mockito-core:3.6.0',
+                coreTesting      : 'androidx.arch.core:core-testing:2.1.0',
+                kotlinxCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinx_coroutine"
         ]
 
         androidTestLibs = [
-                extJunit    : 'androidx.test.ext:junit-ktx:1.1.3',
-                espressoCore: 'androidx.test.espresso:espresso-core:3.4.0'
+                extJunit     : 'androidx.test.ext:junit-ktx:1.1.3',
+                espressoCore : 'androidx.test.espresso:espresso-core:3.4.0',
+                mockitoKotlin: 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0'
         ]
     }
 }
