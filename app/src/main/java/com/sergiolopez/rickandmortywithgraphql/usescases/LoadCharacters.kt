@@ -7,9 +7,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class LoadCharacters @Inject constructor (private val characterRepository: CharacterRepository) {
-
-    suspend fun load(): List<Character> = withContext(Dispatchers.IO) {
+class LoadCharacters @Inject constructor(
+    private val characterRepository: CharacterRepository
+) : ILoadCharacters {
+    override suspend fun load(): List<Character> = withContext(Dispatchers.IO) {
         val response = try {
             characterRepository.getCharacters()
         } catch (ex: Exception) {
