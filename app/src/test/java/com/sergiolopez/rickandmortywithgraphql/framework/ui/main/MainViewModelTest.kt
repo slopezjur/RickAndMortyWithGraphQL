@@ -6,6 +6,7 @@ import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 import com.sergiolopez.rickandmortywithgraphql.usescases.GetCharacters
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.setMain
@@ -31,7 +32,6 @@ class MainViewModelTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-
     private val dispatcher = TestCoroutineDispatcher()
 
     @Before
@@ -46,7 +46,12 @@ class MainViewModelTest {
                 UniverseCharacter("imagen1", "name1", "species1"),
                 UniverseCharacter("imagen2", "name2", "species2")
             )
-            `when`(getCharacters.load()).thenReturn(characterList)
+
+            val characterFlow = flow {
+                emit(characterList)
+            }
+
+            `when`(getCharacters.load()).thenReturn(characterFlow)
 
             val vm = MainViewModel(getCharacters)
             vm.characters.observeForever(observerUniverseCharacterList)

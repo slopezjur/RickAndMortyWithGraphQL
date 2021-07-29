@@ -3,6 +3,7 @@ package com.sergiolopez.rickandmortywithgraphql.usecases
 import com.sergiolopez.rickandmortywithgraphql.data.repositories.CharacterRepository
 import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 import com.sergiolopez.rickandmortywithgraphql.usescases.GetCharacters
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
@@ -28,16 +29,20 @@ class GetCharacters {
     @Test
     fun whenGetCharacters_shouldLoadCharactersList() {
         runBlocking {
-            val characterList = listOf(
-                UniverseCharacter("imagen1", "name1", "species1"),
-                UniverseCharacter("imagen2", "name2", "species2")
-            )
+            val characterFlow = flow {
+                emit(
+                    listOf(
+                        UniverseCharacter("imagen1", "name1", "species1"),
+                        UniverseCharacter("imagen2", "name2", "species2")
+                    )
+                )
+            }
 
-            `when`(getCharacters.load()).thenReturn(characterList)
+            `when`(getCharacters.load()).thenReturn(characterFlow)
 
             val result = getCharacters.load()
 
-            Assert.assertEquals(characterList, result)
+            Assert.assertEquals(characterFlow, result)
         }
     }
 }
