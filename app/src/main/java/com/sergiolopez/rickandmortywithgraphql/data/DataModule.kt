@@ -1,5 +1,6 @@
 package com.sergiolopez.rickandmortywithgraphql.data
 
+import com.sergiolopez.rickandmortywithgraphql.data.datasources.LocalDataSource
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.RemoteDataSource
 import com.sergiolopez.rickandmortywithgraphql.data.repositories.CharacterRepository
 import dagger.Module
@@ -12,6 +13,8 @@ import dagger.hilt.components.SingletonComponent
 class DataModule {
 
     @Provides
-    fun characterRepositoryProvider(remoteDataSource: RemoteDataSource) =
-        CharacterRepository(remoteDataSource)
+    fun characterRepositoryProvider(
+        localDataSource: LocalDataSource,
+        remoteDataSource: RemoteDataSource
+    ) = CharacterRepository(localDataSource, remoteDataSource)
 }
