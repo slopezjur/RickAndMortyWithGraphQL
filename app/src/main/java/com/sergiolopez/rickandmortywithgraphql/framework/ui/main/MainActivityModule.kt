@@ -1,7 +1,7 @@
 package com.sergiolopez.rickandmortywithgraphql.framework.ui.main
 
 import com.sergiolopez.rickandmortywithgraphql.data.repositories.CharacterRepository
-import com.sergiolopez.rickandmortywithgraphql.usescases.LoadCharacters
+import com.sergiolopez.rickandmortywithgraphql.usescases.GetCharacters
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,5 +13,5 @@ class MainActivityModule {
 
     @Provides
     fun loadCharacterProvider(characterRepository: CharacterRepository) =
-        LoadCharacters(characterRepository)
+        GetCharacters(characterRepository)
 }

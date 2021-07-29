@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sergiolopez.rickandmortywithgraphql.domain.Character
-import com.sergiolopez.rickandmortywithgraphql.usescases.ILoadCharacters
+import com.sergiolopez.rickandmortywithgraphql.usescases.GetCharacters
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val loadCharacters: ILoadCharacters
+    private val getCharacters: GetCharacters
 ) : ViewModel() {
 
     private val _characters = MutableLiveData<List<Character>>()
@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(
 
     fun onCreate() {
         viewModelScope.launch {
-            _characters.value = loadCharacters.load()
+            _characters.value = getCharacters.load()
         }
     }
 
