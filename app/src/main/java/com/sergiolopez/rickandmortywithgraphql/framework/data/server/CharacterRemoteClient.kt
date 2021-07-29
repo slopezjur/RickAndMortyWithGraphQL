@@ -1,4 +1,4 @@
-package com.sergiolopez.rickandmortywithgraphql.framework.data.datasources
+package com.sergiolopez.rickandmortywithgraphql.framework.data.server
 
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
