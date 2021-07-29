@@ -60,7 +60,7 @@ allprojects {
                 mockitoCore      : 'org.mockito:mockito-core:3.6.0',
                 coreTesting      : 'androidx.arch.core:core-testing:2.1.0',
                 kotlinxCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinx_coroutine",
-                mockitoInline    : "org.mockito:mockito-inline:2.28.2"
+                mockitoInline    : "org.mockito:mockito-inline:3.11.2"
         ]
 
         androidTestLibs = [
