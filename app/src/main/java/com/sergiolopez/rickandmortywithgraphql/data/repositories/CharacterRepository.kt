@@ -6,13 +6,15 @@ import com.sergiolopez.rickandmortywithgraphql.CharacterListQuery
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.LocalDataSource
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.RemoteDataSource
 import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class CharacterRepository(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource
 ) {
 
-    suspend fun getCharacters(): List<UniverseCharacter> {
+    suspend fun getCharacters(): Flow<List<UniverseCharacter>> = flow {
         if (localDataSource.isEmpty()) {
             val response = try {
                 remoteDataSource.getCharacters()
@@ -26,7 +28,7 @@ class CharacterRepository(
             localDataSource.saveCharacters(characters)
         }
 
-        return localDataSource.getCharacters()
+        emit(localDataSource.getCharacters())
     }
 
     private fun mapGraphQlResponseToCharacters(
@@ -48,6 +50,7 @@ class CharacterRepository(
 
     suspend fun findById(id: Int): UniverseCharacter = localDataSource.findById(id)
 
-    suspend fun update(universeCharacter: UniverseCharacter) = localDataSource.update(universeCharacter)
+    suspend fun update(universeCharacter: UniverseCharacter) =
+        localDataSource.update(universeCharacter)
 }
 

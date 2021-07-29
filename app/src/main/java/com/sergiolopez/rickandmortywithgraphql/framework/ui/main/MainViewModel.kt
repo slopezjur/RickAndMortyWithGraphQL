@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 import com.sergiolopez.rickandmortywithgraphql.usescases.GetCharacters
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,7 +21,9 @@ class MainViewModel @Inject constructor(
 
     fun onCreate() {
         viewModelScope.launch {
-            _characters.value = getCharacters.load()
+            getCharacters.load().collect {
+                _characters.value = it
+            }
         }
     }
 
