@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sergiolopez.rickandmortywithgraphql.domain.Character
+import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 import com.sergiolopez.rickandmortywithgraphql.usescases.GetCharacters
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,8 +15,8 @@ class MainViewModel @Inject constructor(
     private val getCharacters: GetCharacters
 ) : ViewModel() {
 
-    private val _characters = MutableLiveData<List<Character>>()
-    val characters: LiveData<List<Character>> get() = _characters
+    private val _characters = MutableLiveData<List<UniverseCharacter>>()
+    val characters: LiveData<List<UniverseCharacter>> get() = _characters
 
     fun onCreate() {
         viewModelScope.launch {
@@ -24,7 +24,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun onCharacterClicked(character: Character) {
+    fun onCharacterClicked(universeCharacter: UniverseCharacter) {
         // TODO : not impelementd
     }
 }

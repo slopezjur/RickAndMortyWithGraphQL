@@ -1,7 +1,7 @@
 package com.sergiolopez.rickandmortywithgraphql.usecases
 
 import com.sergiolopez.rickandmortywithgraphql.data.repositories.CharacterRepository
-import com.sergiolopez.rickandmortywithgraphql.domain.Character
+import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 import com.sergiolopez.rickandmortywithgraphql.usescases.GetCharacters
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -29,8 +29,8 @@ class GetCharacters {
     fun whenGetCharacters_shouldLoadCharactersList() {
         runBlocking {
             val characterList = listOf(
-                Character("imagen1", "name1", "species1"),
-                Character("imagen2", "name2", "species2")
+                UniverseCharacter("imagen1", "name1", "species1"),
+                UniverseCharacter("imagen2", "name2", "species2")
             )
 
             `when`(getCharacters.load()).thenReturn(characterList)

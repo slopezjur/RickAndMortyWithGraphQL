@@ -1,12 +1,12 @@
 package com.sergiolopez.rickandmortywithgraphql.data.datasources
 
-import com.sergiolopez.rickandmortywithgraphql.domain.Character
+import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 
 interface LocalDataSource {
 
     suspend fun isEmpty(): Boolean
-    suspend fun saveCharacters(characters: List<Character>)
-    suspend fun getCharacters(): List<Character>
-    suspend fun findById(id: Int): Character
-    suspend fun update(movie: Character)
+    suspend fun saveCharacters(universeCharacters: List<UniverseCharacter>)
+    suspend fun getCharacters(): List<UniverseCharacter>
+    suspend fun findById(id: Int): UniverseCharacter
+    suspend fun update(movie: UniverseCharacter)
 }

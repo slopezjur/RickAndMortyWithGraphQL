@@ -5,14 +5,14 @@ import com.apollographql.apollo.api.Response
 import com.sergiolopez.rickandmortywithgraphql.CharacterListQuery
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.LocalDataSource
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.RemoteDataSource
-import com.sergiolopez.rickandmortywithgraphql.domain.Character
+import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 
 class CharacterRepository(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource
 ) {
 
-    suspend fun getCharacters(): List<Character> {
+    suspend fun getCharacters(): List<UniverseCharacter> {
         if (localDataSource.isEmpty()) {
             val response = try {
                 remoteDataSource.getCharacters()
@@ -31,13 +31,13 @@ class CharacterRepository(
 
     private fun mapGraphQlResponseToCharacters(
         response: Response<CharacterListQuery.Data>?
-    ): List<Character> {
+    ): List<UniverseCharacter> {
 
         val result = response?.data?.characters?.results?.filterNotNull()
 
         return if (result != null && !response.hasErrors()) {
             result.map { charactersListQuery ->
-                Character(
+                UniverseCharacter(
                     charactersListQuery.image.orEmpty(),
                     charactersListQuery.name.orEmpty(),
                     charactersListQuery.species.orEmpty()
@@ -46,8 +46,8 @@ class CharacterRepository(
         } else emptyList()
     }
 
-    suspend fun findById(id: Int): Character = localDataSource.findById(id)
+    suspend fun findById(id: Int): UniverseCharacter = localDataSource.findById(id)
 
-    suspend fun update(character: Character) = localDataSource.update(character)
+    suspend fun update(universeCharacter: UniverseCharacter) = localDataSource.update(universeCharacter)
 }
 

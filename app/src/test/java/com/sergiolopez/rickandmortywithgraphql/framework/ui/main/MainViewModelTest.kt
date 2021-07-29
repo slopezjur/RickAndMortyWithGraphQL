@@ -2,7 +2,7 @@ package com.sergiolopez.rickandmortywithgraphql.framework.ui.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.sergiolopez.rickandmortywithgraphql.domain.Character
+import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 import com.sergiolopez.rickandmortywithgraphql.usescases.GetCharacters
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -26,7 +26,7 @@ class MainViewModelTest {
     lateinit var getCharacters: GetCharacters
 
     @Mock
-    lateinit var observerCharacterList: Observer<List<Character>>
+    lateinit var observerUniverseCharacterList: Observer<List<UniverseCharacter>>
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -43,17 +43,17 @@ class MainViewModelTest {
     fun onCreateLoadsCharacter() {
         runBlocking {
             val characterList = listOf(
-                Character("imagen1", "name1", "species1"),
-                Character("imagen2", "name2", "species2")
+                UniverseCharacter("imagen1", "name1", "species1"),
+                UniverseCharacter("imagen2", "name2", "species2")
             )
             `when`(getCharacters.load()).thenReturn(characterList)
 
             val vm = MainViewModel(getCharacters)
-            vm.characters.observeForever(observerCharacterList)
+            vm.characters.observeForever(observerUniverseCharacterList)
 
             vm.onCreate()
 
-            verify(observerCharacterList).onChanged(characterList)
+            verify(observerUniverseCharacterList).onChanged(characterList)
         }
     }
 }

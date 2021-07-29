@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.sergiolopez.rickandmortywithgraphql.databinding.CharacterItemBinding
-import com.sergiolopez.rickandmortywithgraphql.domain.Character
+import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 
 class CharacterListAdapter(
-    private val characters: List<Character>
+    private val universeCharacters: List<UniverseCharacter>
 ) : RecyclerView.Adapter<CharacterListAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: CharacterItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -24,11 +24,11 @@ class CharacterListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return characters.size
+        return universeCharacters.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val character = characters[position]
+        val character = universeCharacters[position]
         holder.binding.characterImage.load(character.image)
         holder.binding.characterName.text = character.name
         holder.binding.characterSpecies.text = character.species
