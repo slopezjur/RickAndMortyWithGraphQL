@@ -1,4 +1,4 @@
-package com.sergiolopez.rickandmortywithgraphql.framework
+package com.sergiolopez.rickandmortywithgraphql.framework.di
 
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.LocalDataSource
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.RemoteDataSource
