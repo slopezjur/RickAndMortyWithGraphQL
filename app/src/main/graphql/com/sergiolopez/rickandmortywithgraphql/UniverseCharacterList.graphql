@@ -1,4 +1,4 @@
-query CharacterList {
+query UniverseCharacterList {
   characters {
     info {
       count

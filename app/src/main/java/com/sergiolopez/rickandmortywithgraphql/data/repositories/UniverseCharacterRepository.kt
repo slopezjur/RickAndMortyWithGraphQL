@@ -2,37 +2,37 @@ package com.sergiolopez.rickandmortywithgraphql.data.repositories
 
 import android.util.Log
 import com.apollographql.apollo.api.Response
-import com.sergiolopez.rickandmortywithgraphql.CharacterListQuery
+import com.sergiolopez.rickandmortywithgraphql.UniverseCharacterListQuery
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.LocalDataSource
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.RemoteDataSource
 import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class CharacterRepository(
+class UniverseCharacterRepository(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource
 ) {
 
-    suspend fun getCharacters(): Flow<List<UniverseCharacter>> = flow {
+    suspend fun getUniverseCharacters(): Flow<List<UniverseCharacter>> = flow {
         if (localDataSource.isEmpty()) {
             val response = try {
-                remoteDataSource.getCharacters()
+                remoteDataSource.getUniverseCharacters()
             } catch (ex: Exception) {
-                Log.d("CharacterList", "Failure", ex)
+                Log.d("UniverseCharacterList", "Failure", ex)
                 null
             }
 
-            val characters = mapGraphQlResponseToCharacters(response)
+            val universeCharacters = mapGraphQlResponseToUniverseCharacters(response)
 
-            localDataSource.saveCharacters(characters)
+            localDataSource.saveUniverseCharacters(universeCharacters)
         }
 
-        emit(localDataSource.getCharacters())
+        emit(localDataSource.getUniverseCharacters())
     }
 
-    private fun mapGraphQlResponseToCharacters(
-        response: Response<CharacterListQuery.Data>?
+    private fun mapGraphQlResponseToUniverseCharacters(
+        response: Response<UniverseCharacterListQuery.Data>?
     ): List<UniverseCharacter> {
 
         val result = response?.data?.characters?.results?.filterNotNull()

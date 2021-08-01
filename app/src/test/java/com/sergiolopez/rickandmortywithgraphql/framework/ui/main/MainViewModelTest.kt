@@ -3,7 +3,7 @@ package com.sergiolopez.rickandmortywithgraphql.framework.ui.main
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
-import com.sergiolopez.rickandmortywithgraphql.usescases.GetCharacters
+import com.sergiolopez.rickandmortywithgraphql.usescases.GetUniverseCharacters
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
@@ -24,7 +24,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class MainViewModelTest {
 
     @Mock
-    lateinit var getCharacters: GetCharacters
+    lateinit var getUniverseCharacters: GetUniverseCharacters
 
     @Mock
     lateinit var observerUniverseCharacterList: Observer<List<UniverseCharacter>>
@@ -51,9 +51,9 @@ class MainViewModelTest {
                 emit(characterList)
             }
 
-            `when`(getCharacters.load()).thenReturn(characterFlow)
+            `when`(getUniverseCharacters.load()).thenReturn(characterFlow)
 
-            val vm = MainViewModel(getCharacters)
+            val vm = MainViewModel(getUniverseCharacters)
             vm.characters.observeForever(observerUniverseCharacterList)
 
             vm.onCreate()

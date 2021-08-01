@@ -2,7 +2,7 @@ package com.sergiolopez.rickandmortywithgraphql.framework.di
 
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.LocalDataSource
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.RemoteDataSource
-import com.sergiolopez.rickandmortywithgraphql.data.repositories.CharacterRepository
+import com.sergiolopez.rickandmortywithgraphql.data.repositories.UniverseCharacterRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,8 +13,8 @@ import dagger.hilt.components.SingletonComponent
 class DataModule {
 
     @Provides
-    fun characterRepositoryProvider(
+    fun universeCharacterRepositoryProvider(
         localDataSource: LocalDataSource,
         remoteDataSource: RemoteDataSource
-    ) = CharacterRepository(localDataSource, remoteDataSource)
+    ) = UniverseCharacterRepository(localDataSource, remoteDataSource)
 }

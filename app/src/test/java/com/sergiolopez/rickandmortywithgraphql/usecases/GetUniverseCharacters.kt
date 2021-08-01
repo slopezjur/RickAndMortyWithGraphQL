@@ -1,8 +1,8 @@
 package com.sergiolopez.rickandmortywithgraphql.usecases
 
-import com.sergiolopez.rickandmortywithgraphql.data.repositories.CharacterRepository
+import com.sergiolopez.rickandmortywithgraphql.data.repositories.UniverseCharacterRepository
 import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
-import com.sergiolopez.rickandmortywithgraphql.usescases.GetCharacters
+import com.sergiolopez.rickandmortywithgraphql.usescases.GetUniverseCharacters
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -14,16 +14,16 @@ import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class GetCharacters {
+class GetUniverseCharacters {
 
-    lateinit var getCharacters: GetCharacters
+    lateinit var getUniverseCharacters: GetUniverseCharacters
 
     @Mock
-    lateinit var characterRepository: CharacterRepository
+    lateinit var universeCharacterRepository: UniverseCharacterRepository
 
     @Before
     fun setUp() {
-        getCharacters = GetCharacters(characterRepository)
+        getUniverseCharacters = GetUniverseCharacters(universeCharacterRepository)
     }
 
     @Test
@@ -38,9 +38,9 @@ class GetCharacters {
                 )
             }
 
-            `when`(getCharacters.load()).thenReturn(characterFlow)
+            `when`(getUniverseCharacters.load()).thenReturn(characterFlow)
 
-            val result = getCharacters.load()
+            val result = getUniverseCharacters.load()
 
             Assert.assertEquals(characterFlow, result)
         }

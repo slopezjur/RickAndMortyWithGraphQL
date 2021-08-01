@@ -1,9 +1,9 @@
 package com.sergiolopez.rickandmortywithgraphql.data.datasources
 
 import com.apollographql.apollo.api.Response
-import com.sergiolopez.rickandmortywithgraphql.CharacterListQuery
+import com.sergiolopez.rickandmortywithgraphql.UniverseCharacterListQuery
 
 interface RemoteDataSource {
 
-    suspend fun getCharacters(): Response<CharacterListQuery.Data>
+    suspend fun getUniverseCharacters(): Response<UniverseCharacterListQuery.Data>
 }

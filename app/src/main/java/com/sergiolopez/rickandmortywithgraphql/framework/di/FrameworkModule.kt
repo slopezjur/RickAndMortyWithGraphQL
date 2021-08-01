@@ -3,9 +3,9 @@ package com.sergiolopez.rickandmortywithgraphql.framework.di
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.LocalDataSource
 import com.sergiolopez.rickandmortywithgraphql.data.datasources.RemoteDataSource
 import com.sergiolopez.rickandmortywithgraphql.framework.data.database.RoomDataSource
-import com.sergiolopez.rickandmortywithgraphql.framework.data.server.CharacterRemoteClient
-import com.sergiolopez.rickandmortywithgraphql.framework.data.server.CharacterRemoteServer
-import com.sergiolopez.rickandmortywithgraphql.framework.data.server.ServerCharacterDataSource
+import com.sergiolopez.rickandmortywithgraphql.framework.data.server.ServerUniverseCharacterDataSource
+import com.sergiolopez.rickandmortywithgraphql.framework.data.server.UniverseCharacterRemoteServer
+import com.sergiolopez.rickandmortywithgraphql.framework.data.server.UniverseUniverseCharacterRemoteClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,15 +23,15 @@ class FrameworkModule {
     fun baseUrlProvider(): String = "https://rickandmortyapi.com/graphql"
 
     @Provides
-    fun characterRemoteServerProvider(
+    fun universeCharacterRemoteServerProvider(
         @Named("baseUrl") baseUrl: String
-    ): CharacterRemoteServer =
-        CharacterRemoteClient(baseUrl)
+    ): UniverseCharacterRemoteServer =
+        UniverseUniverseCharacterRemoteClient(baseUrl)
 
     @Provides
     fun localDataSourceProvider(): LocalDataSource = RoomDataSource()
 
     @Provides
-    fun remoteDataSourceProvider(characterRemoteServer: CharacterRemoteServer): RemoteDataSource =
-        ServerCharacterDataSource(characterRemoteServer)
+    fun remoteDataSourceProvider(universeCharacterRemoteServer: UniverseCharacterRemoteServer): RemoteDataSource =
+        ServerUniverseCharacterDataSource(universeCharacterRemoteServer)
 }

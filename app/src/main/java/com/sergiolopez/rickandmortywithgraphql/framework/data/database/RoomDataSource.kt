@@ -5,21 +5,21 @@ import com.sergiolopez.rickandmortywithgraphql.domain.UniverseCharacter
 
 class RoomDataSource : LocalDataSource {
 
-    private var charactersList = listOf<UniverseCharacter>()
+    private var universeCharactersList = listOf<UniverseCharacter>()
 
     override suspend fun isEmpty(): Boolean {
         //TODO("Not yet implemented")
         return true
     }
 
-    override suspend fun saveCharacters(universeCharacters: List<UniverseCharacter>) {
+    override suspend fun saveUniverseCharacters(universeCharacters: List<UniverseCharacter>) {
         //TODO("Not yet implemented")
-        charactersList = universeCharacters
+        universeCharactersList = universeCharacters
     }
 
-    override suspend fun getCharacters(): List<UniverseCharacter> {
+    override suspend fun getUniverseCharacters(): List<UniverseCharacter> {
         //TODO("Not yet implemented")
-        return charactersList
+        return universeCharactersList
     }
 
     override suspend fun findById(id: Int): UniverseCharacter {
